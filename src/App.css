@@ -1,0 +1,325 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  color: #cccccc;
+  overflow: hidden;
+  min-height: 100vh;
+}
+
+#root {
+  height: 100vh;
+  width: 100vw;
+}
+
+.vscode-container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #1e1e1e 0%, #252526 50%, #2d2d30 100%);
+  position: relative;
+}
+
+/* Enhanced header with creative design */
+.vscode-header {
+  background: linear-gradient(135deg, #007acc 0%, #005a9e 50%, #004080 100%);
+  color: white;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  height: 50px;
+  border-bottom: 2px solid #005a9e;
+  position: relative;
+  overflow: hidden;
+}
+
+.vscode-header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 100%
+  );
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%,
+  100% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(100%);
+  }
+}
+
+.vscode-header h1 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  letter-spacing: 0.5px;
+}
+
+.vscode-header h1::before {
+  content: "⚡";
+  margin-right: 8px;
+  font-size: 16px;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.1);
+  }
+}
+
+.vscode-main {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+}
+
+.vscode-main::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+      circle at 20% 80%,
+      rgba(102, 126, 234, 0.1) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(240, 147, 251, 0.1) 0%,
+      transparent 50%
+    );
+  pointer-events: none;
+  z-index: 0;
+}
+
+.vscode-split {
+  width: 100% !important;
+  height: 100% !important;
+  position: relative;
+  z-index: 1;
+}
+
+.vscode-split .Resizer {
+  background: linear-gradient(180deg, #3c3c3c 0%, #4a4a4a 50%, #3c3c3c 100%);
+  width: 6px;
+  cursor: col-resize;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.vscode-split .Resizer::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 2px;
+  height: 20px;
+  background: linear-gradient(180deg, #007acc 0%, #005a9e 100%);
+  border-radius: 1px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.vscode-split .Resizer:hover {
+  background: linear-gradient(180deg, #007acc 0%, #005a9e 50%, #007acc 100%);
+  box-shadow: 0 0 10px rgba(0, 122, 204, 0.5);
+}
+
+.vscode-split .Resizer:hover::before {
+  opacity: 1;
+}
+
+.sidebar {
+  background: linear-gradient(180deg, #252526 0%, #2d2d30 100%);
+  height: 100%;
+  overflow: hidden;
+  border-right: 1px solid #1e1e1e;
+  position: relative;
+}
+
+.sidebar::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 100%
+  );
+}
+
+.editor-panel {
+  background: linear-gradient(135deg, #1e1e1e 0%, #252526 100%);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+.editor-container {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+.editor-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 122, 204, 0.3) 50%,
+    transparent 100%
+  );
+  z-index: 1;
+}
+
+.welcome-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background: linear-gradient(135deg, #1e1e1e 0%, #252526 100%);
+  color: #cccccc;
+  position: relative;
+  overflow: hidden;
+}
+
+.welcome-screen::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+      circle at 30% 70%,
+      rgba(102, 126, 234, 0.05) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 70% 30%,
+      rgba(240, 147, 251, 0.05) 0%,
+      transparent 50%
+    );
+  pointer-events: none;
+}
+
+.welcome-screen h2 {
+  font-size: 28px;
+  margin-bottom: 16px;
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  position: relative;
+  z-index: 1;
+}
+
+.welcome-screen h2::before {
+  content: "🎨";
+  margin-right: 12px;
+  font-size: 24px;
+  animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.welcome-screen p {
+  font-size: 16px;
+  color: #cccccc;
+  text-align: center;
+  max-width: 400px;
+  line-height: 1.6;
+  position: relative;
+  z-index: 1;
+}
+
+/* Enhanced scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #2d2d30;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #007acc 0%, #005a9e 100%);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #0099ff 0%, #007acc 100%);
+}
+
+/* Override default Vite styles */
+#root {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
+/* Remove old styles */
+.logo,
+.card,
+.read-the-docs,
+.vibe-flex-container,
+.vibe-header,
+.vibe-editor-container,
+.vibe-title,
+.vibe-subtitle,
+.vibe-cta {
+  display: none;
+}

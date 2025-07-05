@@ -1,0 +1,174 @@
+.editor-tabs {
+  display: flex;
+  background: linear-gradient(135deg, #2d2d30 0%, #3c3c3c 100%);
+  border-bottom: 2px solid #1e1e1e;
+  overflow-x: auto;
+  height: 40px;
+  position: relative;
+}
+
+.editor-tabs::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 122, 204, 0.3) 50%,
+    transparent 100%
+  );
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  background: linear-gradient(135deg, #2d2d30 0%, #3c3c3c 100%);
+  border-right: 1px solid #1e1e1e;
+  cursor: pointer;
+  min-width: 140px;
+  max-width: 220px;
+  transition: all 0.3s ease;
+  user-select: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.tab::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 122, 204, 0.1) 50%,
+    transparent 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.tab:hover::before {
+  opacity: 1;
+}
+
+.tab:hover {
+  background: linear-gradient(135deg, #3c3c3c 0%, #4a4a4a 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.tab.active {
+  background: linear-gradient(135deg, #1e1e1e 0%, #252526 100%);
+  border-bottom: 3px solid #007acc;
+  box-shadow: 0 2px 8px rgba(0, 122, 204, 0.3);
+  position: relative;
+}
+
+.tab.active::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 122, 204, 0.1) 0%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+.tab.active:hover {
+  background: linear-gradient(135deg, #252526 0%, #2d2d30 100%);
+}
+
+.tab-name {
+  flex: 1;
+  font-size: 13px;
+  color: #cccccc;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-right: 12px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.tab:hover .tab-name {
+  color: #ffffff;
+}
+
+.tab.active .tab-name {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.tab-close {
+  background: none;
+  border: none;
+  color: #cccccc;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  opacity: 0.7;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.tab-close::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, #f5576c 0%, #f093fb 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 3px;
+}
+
+.tab-close:hover::before {
+  opacity: 0.2;
+}
+
+.tab-close:hover {
+  opacity: 1;
+  transform: scale(1.1);
+  color: #ffffff;
+}
+
+.tab.active .tab-close:hover {
+  background: rgba(45, 45, 48, 0.8);
+}
+
+/* Enhanced scrollbar for tabs */
+.editor-tabs::-webkit-scrollbar {
+  height: 4px;
+}
+
+.editor-tabs::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.editor-tabs::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, #007acc 0%, #005a9e 100%);
+  border-radius: 2px;
+}
+
+.editor-tabs::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(90deg, #0099ff 0%, #007acc 100%);
+}
