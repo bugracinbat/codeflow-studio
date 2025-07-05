@@ -49,7 +49,7 @@ const AppLayout = ({
               />
             </div>
           </div>
-          <ConsolePanel />
+          <ConsolePanel fileStructure={files} onFileSelect={onFileSelect} />
         </SplitPane>
       </div>
     </div>

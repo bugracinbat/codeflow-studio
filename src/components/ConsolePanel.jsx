@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
+import { useConsole } from "../hooks/useConsole";
 import "./ConsolePanel.css";
 
 const TABS = [
@@ -8,33 +9,72 @@ const TABS = [
   { key: "debug", label: "DEBUG CONSOLE" },
 ];
 
-const ConsolePanel = () => {
+const ConsolePanel = ({ fileStructure, onFileSelect }) => {
   const [activeTab, setActiveTab] = useState("terminal");
   const [terminalInput, setTerminalInput] = useState("");
-  const [terminalHistory, setTerminalHistory] = useState([
-    "$ Console output will appear here...",
-  ]);
+  const inputRef = useRef(null);
+  const consoleRef = useRef(null);
+
+  const {
+    history,
+    executeCommand,
+    clearConsole,
+    getPreviousCommand,
+    getNextCommand,
+  } = useConsole(fileStructure, onFileSelect);
+
+  // Auto-scroll to bottom when new output is added
+  useEffect(() => {
+    if (consoleRef.current) {
+      consoleRef.current.scrollTop = consoleRef.current.scrollHeight;
+    }
+  }, [history]);
 
   const handleInputChange = (e) => setTerminalInput(e.target.value);
+
   const handleInputKeyDown = (e) => {
     if (e.key === "Enter") {
-      setTerminalHistory((prev) => [...prev, `$ ${terminalInput}`]);
+      executeCommand(terminalInput);
       setTerminalInput("");
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      setTerminalInput(getPreviousCommand());
+    } else if (e.key === "ArrowDown") {
+      e.preventDefault();
+      setTerminalInput(getNextCommand());
     }
+  };
+
+  const handleTabClick = (tabKey) => {
+    setActiveTab(tabKey);
+    if (tabKey === "terminal") {
+      // Focus input when switching to terminal tab
+      setTimeout(() => inputRef.current?.focus(), 0);
+    }
+  };
+
+  const renderHistoryItem = (item, index) => {
+    const className = `console-line ${item.type}`;
+    return (
+      <div key={index} className={className}>
+        {item.content.map((line, lineIndex) => (
+          <pre key={lineIndex}>{line}</pre>
+        ))}
+      </div>
+    );
   };
 
   let content;
   if (activeTab === "terminal") {
     content = (
       <>
-        <div className="console-content">
-          {terminalHistory.map((line, idx) => (
-            <pre key={idx}>{line}</pre>
-          ))}
+        <div className="console-content" ref={consoleRef}>
+          {history.map(renderHistoryItem)}
         </div>
         <div className="console-input-bar">
           <span className="console-input-prompt">$</span>
           <input
+            ref={inputRef}
             className="console-input"
             type="text"
             value={terminalInput}
@@ -42,6 +82,7 @@ const ConsolePanel = () => {
             onKeyDown={handleInputKeyDown}
             placeholder="Type a command..."
             autoComplete="off"
+            autoFocus
           />
         </div>
       </>
@@ -74,7 +115,7 @@ const ConsolePanel = () => {
             <button
               key={tab.key}
               className={`console-tab${activeTab === tab.key ? " active" : ""}`}
-              onClick={() => setActiveTab(tab.key)}
+              onClick={() => handleTabClick(tab.key)}
             >
               {tab.label}
             </button>

@@ -60,6 +60,28 @@
   min-height: 0;
 }
 
+.console-line {
+  margin-bottom: 4px;
+}
+
+.console-line.input {
+  color: #4fc3f7;
+}
+
+.console-line.output {
+  color: #b5cea8;
+}
+
+.console-line.error {
+  color: #f44336;
+}
+
+.console-line pre {
+  margin: 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
 .console-input-bar {
   display: flex;
   align-items: center;
