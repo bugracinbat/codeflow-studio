@@ -7,6 +7,10 @@
   align-items: center;
   height: 50px;
   box-sizing: border-box;
+  width: 100%;
+  z-index: 1000;
+  position: relative;
+  flex-shrink: 0;
 }
 
 .vscode-header h1 {
